@@ -51,7 +51,7 @@ public class VacationWeekTable extends JFrame{
 
         // font
         Font title_font = new Font("Dialog",Font.PLAIN, 15);
-        Font font1 = new Font("Dialog",Font.BOLD, 10);
+        Font font1 = new Font("Dialog",Font.BOLD, 13);
         Font font2 = new Font("Dialog", Font.BOLD, 15);
         Font font3 = new Font("Dialog", Font.PLAIN, 15);
         Font plainFont = new Font("Dialog", Font.PLAIN, 11);
@@ -187,173 +187,165 @@ public class VacationWeekTable extends JFrame{
 
 
         //------------------------------------------------------------
-        // <진도 란>
-        JPanel progress = new JPanel();
-        progress.setLayout(null);
-        progress.setBounds(0, 150, 1300, 290); // center의 0,150위치에 1300X200 삽입
-        progress.setBorder(border2);
-        progress.setBackground(Color.red);
+        // <진도 & 과제 란>
+        JPanel progress_and_homework = new JPanel();
+        progress_and_homework.setLayout(null);
+        progress_and_homework.setBounds(0, 150, 1300, 290); // center의 0,150위치에 1300X200 삽입
+        progress_and_homework.setBorder(border2);
+        progress_and_homework.setBackground(Color.red);
 
 
-        JPanel pro_panel1 = new JPanel(new BorderLayout()); // default : FlowLayout -> 맨 위에 가운데에 설정
-        pro_panel1.setBounds(0, 0, 50, 290);
-        pro_panel1.setBorder(border1);
-        pro_panel1.setBackground(light_red_color);
-
-        JLabel pro_label1 = new JLabel("진도");
-        pro_label1.setFont(font1);
-        pro_label1.setHorizontalAlignment(JLabel.CENTER);
-        pro_label1.setVerticalAlignment(JLabel.CENTER);
-        pro_panel1.add(pro_label1, BorderLayout.CENTER);
-        JLabel pro_label2 = new JLabel("&");
-        pro_label2.setFont(font1);
-        pro_label2.setHorizontalAlignment(JLabel.CENTER);
-        pro_label2.setVerticalAlignment(JLabel.CENTER);
-        pro_panel1.add(pro_label2, BorderLayout.CENTER);
-        JLabel pro_label3 = new JLabel("과제");
-        pro_label3.setFont(font1);
-        pro_label3.setHorizontalAlignment(JLabel.CENTER);
-        pro_label3.setVerticalAlignment(JLabel.CENTER);
-        pro_panel1.add(pro_label3, BorderLayout.CENTER);
+        JPanel pro_and_hwk_panel1 = new JPanel(new BorderLayout()); // default : FlowLayout -> 맨 위에 가운데에 설정
+        pro_and_hwk_panel1.setBounds(0, 0, 50, 290);
+        pro_and_hwk_panel1.setBorder(border1);
+        pro_and_hwk_panel1.setBackground(light_red_color);
 
 
-        JPanel pro_panel2 = new JPanel();
-        pro_panel2.setLayout(null);
-        pro_panel2.setBounds(50, 0, 100, 290); // progress의 50, 0 위치에 100X290 삽입
-        pro_panel2.setBorder(border1);
-
-        JLabel pro_date_label = new JLabel("날짜"); // att_date_label이랑 겹쳐주자
-        pro_date_label.setFont(font2);
-        pro_date_label.setHorizontalAlignment(JLabel.CENTER);
-        pro_date_label.setVerticalAlignment(JLabel.CENTER);
-
-        JPanel pro_panel2_1 = new JPanel(new BorderLayout());
-        pro_panel2_1.setBounds(0, 0, 100, 25); // pro_panel2의 (0, 0)위치에 100X25 삽입
-        pro_panel2_1.setBorder(border1);
-        pro_panel2_1.setBackground(light_red_color);
-        pro_panel2_1.add(pro_date_label, BorderLayout.CENTER);
+        JLabel pah_label1 = new JLabel("<html>진도<br>&nbsp;&nbsp;&<br>과제</html>");
+        pah_label1.setFont(font1);
+        pah_label1.setHorizontalAlignment(JLabel.CENTER);
+        pah_label1.setVerticalAlignment(JLabel.CENTER);
+        pro_and_hwk_panel1.add(pah_label1, BorderLayout.CENTER);
 
 
-        JPanel pro_panel2_grid = new JPanel(new GridLayout(5, 1)); // 진도 날짜 밑 5개의 grid칸
-        pro_panel2_grid.setBounds(0, 25, 100, 265); // pro_panel2의 0, 25위치에 100X265 삽입
-        pro_panel2_grid.setBorder(border1);
+
+        JPanel pro_and_hwk_panel2 = new JPanel();
+        pro_and_hwk_panel2.setLayout(null);
+        pro_and_hwk_panel2.setBounds(50, 0, 100, 290); // progress의 50, 0 위치에 100X290 삽입
+        pro_and_hwk_panel2.setBorder(border1);
+
+        JLabel pah_date_label = new JLabel("날짜"); // att_date_label이랑 겹쳐주자
+        pah_date_label.setFont(font2);
+        pah_date_label.setHorizontalAlignment(JLabel.CENTER);
+        pah_date_label.setVerticalAlignment(JLabel.CENTER);
+
+        JPanel pah_panel2_1 = new JPanel(new BorderLayout());
+        pah_panel2_1.setBounds(0, 0, 100, 25); // pro_panel2의 (0, 0)위치에 100X25 삽입
+        pah_panel2_1.setBorder(border1);
+        pah_panel2_1.setBackground(light_red_color);
+        pah_panel2_1.add(pah_date_label, BorderLayout.CENTER);
+
+
+        JPanel pah_panel2_grid = new JPanel(new GridLayout(5, 1)); // 진도 날짜 밑 5개의 grid칸
+        pah_panel2_grid.setBounds(0, 25, 100, 265); // pro_panel2의 0, 25위치에 100X265 삽입
+        pah_panel2_grid.setBorder(border1);
 
         for(int i=0;i<5;i++){
-            JPanel pro_panel2_2 = new JPanel();
-            pro_panel2_2.setBorder(border1);
-            pro_panel2_2.setBackground(light_gray_color);
-            JLabel proDateLabel = new JLabel(printList.get(i).getDate());
-            proDateLabel.setFont(plainFont);
-            pro_panel2_2.add(proDateLabel); //정보 저장
+            JPanel pah_panel2_2 = new JPanel();
+            pah_panel2_2.setBorder(border1);
+            pah_panel2_2.setBackground(light_gray_color);
+            JLabel pahDateLabel = new JLabel(printList.get(i).getDate());
+            pahDateLabel.setFont(plainFont);
+            pah_panel2_2.add(pahDateLabel); //정보 저장
 
-            pro_panel2_grid.add(pro_panel2_2);
+            pah_panel2_grid.add(pah_panel2_2);
         }
 
 
-        pro_panel2.add(pro_panel2_1);
-        pro_panel2.add(pro_panel2_grid);
+        pro_and_hwk_panel2.add(pah_panel2_1);
+        pro_and_hwk_panel2.add(pah_panel2_grid);
 
 
 
-        JPanel pro_panel3 = new JPanel();
-        pro_panel3.setLayout(null);
-        pro_panel3.setBounds(150, 0, 100, 290); // progress의 (150, 0)위치에 100X290 삽입
-        pro_panel3.setBorder(border1);
+        JPanel pro_and_hwk_panel3 = new JPanel();
+        pro_and_hwk_panel3.setLayout(null);
+        pro_and_hwk_panel3.setBounds(150, 0, 100, 290); // progress의 (150, 0)위치에 100X290 삽입
+        pro_and_hwk_panel3.setBorder(border1);
 
-        JPanel pro_panel3_grid = new JPanel(new GridLayout(5, 1)); // 진도 날짜 밑 5개의 grid칸
-        pro_panel3_grid.setBounds(0, 25, 100, 265); // pro_panel3의 0, 25위치에 100X265 삽입
-        pro_panel3_grid.setBorder(border1);
+        JPanel pah_panel3_grid = new JPanel(new GridLayout(5, 1)); // 진도 날짜 밑 5개의 grid칸
+        pah_panel3_grid.setBounds(0, 25, 100, 265); // pro_panel3의 0, 25위치에 100X265 삽입
+        pah_panel3_grid.setBorder(border1);
 
-        JLabel pro_book_label = new JLabel("교재");
-        pro_book_label.setFont(font2);
-        pro_book_label.setHorizontalAlignment(JLabel.CENTER);
-        pro_book_label.setVerticalAlignment(JLabel.CENTER);
+        JLabel pah_book_label = new JLabel("교재");
+        pah_book_label.setFont(font2);
+        pah_book_label.setHorizontalAlignment(JLabel.CENTER);
+        pah_book_label.setVerticalAlignment(JLabel.CENTER);
 
-        JPanel pro_panel3_1 = new JPanel(new BorderLayout());
-        pro_panel3_1.setBounds(0, 0, 100, 25);
-        pro_panel3_1.setBorder(border1);
-        pro_panel3_1.setBackground(light_red_color);
-        pro_panel3_1.add(pro_book_label);
+        JPanel pah_panel3_1 = new JPanel(new BorderLayout());
+        pah_panel3_1.setBounds(0, 0, 100, 25);
+        pah_panel3_1.setBorder(border1);
+        pah_panel3_1.setBackground(light_red_color);
+        pah_panel3_1.add(pah_book_label);
 
         for(int i=0;i<5;i++){
-            JPanel pro_panel3_2 = new JPanel();
-            pro_panel3_2.setBorder(border1);
-            pro_panel3_2.setBackground(light_gray_color);
-            JLabel proBookLabel = new JLabel(printList.get(i).getTextbook());
-            proBookLabel.setFont(plainFont);
-            pro_panel3_2.add(proBookLabel); //정보 저장
+            JPanel pah_panel3_2 = new JPanel();
+            pah_panel3_2.setBorder(border1);
+            pah_panel3_2.setBackground(light_gray_color);
+            JLabel pahBookLabel = new JLabel(printList.get(i).getTextbook());
+            pahBookLabel.setFont(plainFont);
+            pah_panel3_2.add(pahBookLabel); //정보 저장
 
-            pro_panel3_grid.add(pro_panel3_2);
+            pah_panel3_grid.add(pah_panel3_2);
         }
 
-        pro_panel3.add(pro_panel3_1);
-        pro_panel3.add(pro_panel3_grid);
+        pro_and_hwk_panel3.add(pah_panel3_1);
+        pro_and_hwk_panel3.add(pah_panel3_grid);
 
 
-        JPanel pro_panel4 = new JPanel();
-        pro_panel4.setLayout(null);
-        pro_panel4.setBounds(250, 0, 525, 290); // progress의 (250, 0)위치에 1050X290 삽입
-        pro_panel4.setBorder(border1);
+        JPanel pro_and_hwk_panel4 = new JPanel();
+        pro_and_hwk_panel4.setLayout(null);
+        pro_and_hwk_panel4.setBounds(250, 0, 525, 290); // progress의 (250, 0)위치에 1050X290 삽입
+        pro_and_hwk_panel4.setBorder(border1);
 
-        JPanel pro_panel4_grid = new JPanel(new GridLayout(5, 1));
-        pro_panel4_grid.setBounds(0, 25, 525, 265);
-        pro_panel4_grid.setBorder(border1);
+        JPanel pah_panel4_grid = new JPanel(new GridLayout(5, 1));
+        pah_panel4_grid.setBounds(0, 25, 525, 265);
+        pah_panel4_grid.setBorder(border1);
 
-        JLabel pro_pro_label = new JLabel("진도");
-        pro_pro_label.setFont(font2);
-        pro_pro_label.setHorizontalAlignment(JLabel.CENTER);
-        pro_pro_label.setVerticalAlignment(JLabel.CENTER);
+        JLabel pah_pro_label = new JLabel("진도");
+        pah_pro_label.setFont(font2);
+        pah_pro_label.setHorizontalAlignment(JLabel.CENTER);
+        pah_pro_label.setVerticalAlignment(JLabel.CENTER);
 
-        JPanel pro_panel4_1 = new JPanel(new BorderLayout());
-        pro_panel4_1.setBounds(0, 0, 525, 25);
-        pro_panel4_1.setBorder(border1);
-        pro_panel4_1.setBackground(light_red_color);
-        pro_panel4_1.add(pro_pro_label, BorderLayout.CENTER);
+        JPanel pah_panel4_1 = new JPanel(new BorderLayout());
+        pah_panel4_1.setBounds(0, 0, 525, 25);
+        pah_panel4_1.setBorder(border1);
+        pah_panel4_1.setBackground(light_red_color);
+        pah_panel4_1.add(pah_pro_label, BorderLayout.CENTER);
 
         for(int i=0;i<5;i++){
-            JPanel pro_panel4_2 = new JPanel();
-            pro_panel4_2.setBorder(border1);
-            pro_panel4_2.setBackground(light_gray_color);
+            JPanel pah_panel4_2 = new JPanel();
+            pah_panel4_2.setBorder(border1);
+            pah_panel4_2.setBackground(light_gray_color);
 
             JLabel proLabel = new JLabel("<html>"+printList.get(i).getProgress().replace("\n","<br>")+"</html>");
             proLabel.setHorizontalAlignment(JLabel.CENTER);
             proLabel.setFont(plainFont);
-            pro_panel4_2.add(proLabel);
+            pah_panel4_2.add(proLabel);
 
-            pro_panel4_grid.add(pro_panel4_2);
+            pah_panel4_grid.add(pah_panel4_2);
 
         }
 
 
-        pro_panel4.add(pro_panel4_1);
-        pro_panel4.add(pro_panel4_grid);
+        pro_and_hwk_panel4.add(pah_panel4_1);
+        pro_and_hwk_panel4.add(pah_panel4_grid);
 
 
 
-        JPanel pro_panel5 = new JPanel();
-        pro_panel5.setLayout(null);
-        pro_panel5.setBounds(775, 0, 525, 290); // progress의 (250, 0)위치에 1050X290 삽입
-        pro_panel5.setBorder(border1);
+        JPanel pro_and_hwk_panel5 = new JPanel();
+        pro_and_hwk_panel5.setLayout(null);
+        pro_and_hwk_panel5.setBounds(775, 0, 525, 290); // progress의 (250, 0)위치에 1050X290 삽입
+        pro_and_hwk_panel5.setBorder(border1);
 
-        JPanel pro_panel5_grid = new JPanel(new GridLayout(5, 1));
-        pro_panel5_grid.setBounds(0, 25, 525, 265);
-        pro_panel5_grid.setBorder(border1);
+        JPanel pah_panel5_grid = new JPanel(new GridLayout(5, 1));
+        pah_panel5_grid.setBounds(0, 25, 525, 265);
+        pah_panel5_grid.setBorder(border1);
 
-        JLabel pro_hwk_label = new JLabel("과제");
-        pro_hwk_label.setFont(font2);
-        pro_hwk_label.setHorizontalAlignment(JLabel.CENTER);
-        pro_hwk_label.setVerticalAlignment(JLabel.CENTER);
+        JLabel pah_hwk_label = new JLabel("과제");
+        pah_hwk_label.setFont(font2);
+        pah_hwk_label.setHorizontalAlignment(JLabel.CENTER);
+        pah_hwk_label.setVerticalAlignment(JLabel.CENTER);
 
-        JPanel pro_panel5_1 = new JPanel(new BorderLayout());
-        pro_panel5_1.setBounds(0, 0, 525, 25);
-        pro_panel5_1.setBorder(border1);
-        pro_panel5_1.setBackground(light_red_color);
-        pro_panel5_1.add(pro_hwk_label, BorderLayout.CENTER);
+        JPanel pah_panel5_1 = new JPanel(new BorderLayout());
+        pah_panel5_1.setBounds(0, 0, 525, 25);
+        pah_panel5_1.setBorder(border1);
+        pah_panel5_1.setBackground(light_red_color);
+        pah_panel5_1.add(pah_hwk_label, BorderLayout.CENTER);
 
         for(int i=0;i<5;i++){
-            JPanel pro_panel5_2 = new JPanel();
-            pro_panel5_2.setBorder(border1);
-            pro_panel5_2.setBackground(light_gray_color);
+            JPanel pah_panel5_2 = new JPanel();
+            pah_panel5_2.setBorder(border1);
+            pah_panel5_2.setBackground(light_gray_color);
 
             //과제 란이 작기 때문에 자동 줄바꿈 처리가 되는 JTextPane사용
             JTextPane tpName = new JTextPane();
@@ -367,23 +359,23 @@ public class VacationWeekTable extends JFrame{
             StyleConstants.setAlignment(ce, StyleConstants.ALIGN_CENTER);
             doc.setParagraphAttributes(0, doc.getLength(), ce, false);
 
-            pro_panel5_2.add(tpName);
-            pro_panel5_grid.add(pro_panel5_2);
+            pah_panel5_2.add(tpName);
+            pah_panel5_grid.add(pah_panel5_2);
 
         }
 
 
 
 
-        pro_panel5.add(pro_panel5_1);
-        pro_panel5.add(pro_panel5_grid);
+        pro_and_hwk_panel5.add(pah_panel5_1);
+        pro_and_hwk_panel5.add(pah_panel5_grid);
 
 
-        progress.add(pro_panel1);
-        progress.add(pro_panel2);
-        progress.add(pro_panel3);
-        progress.add(pro_panel4);
-        progress.add(pro_panel5);
+        progress_and_homework.add(pro_and_hwk_panel1);
+        progress_and_homework.add(pro_and_hwk_panel2);
+        progress_and_homework.add(pro_and_hwk_panel3);
+        progress_and_homework.add(pro_and_hwk_panel4);
+        progress_and_homework.add(pro_and_hwk_panel5);
 
 
 
@@ -395,21 +387,19 @@ public class VacationWeekTable extends JFrame{
         concentration.setBorder(border2);
 
 
-        JPanel con_panel1 = new JPanel(new GridLayout(2, 1)); // default : FlowLayout -> 맨 위에 가운데에 설정
+        JPanel con_panel1 = new JPanel(new BorderLayout()); // default : FlowLayout -> 맨 위에 가운데에 설정
         con_panel1.setBounds(0, 0, 50, 90); // concentration의 (0, 0)위치에 50X90 삽입
         con_panel1.setBorder(border1);
         con_panel1.setBackground(light_blue_color);
 
-        JLabel con_label1 = new JLabel("수업");
-        JLabel con_label2 = new JLabel("집중도");
-        con_label1.setFont(font1);
-        con_label1.setHorizontalAlignment(JLabel.CENTER);
-        con_label1.setVerticalAlignment(JLabel.CENTER);
-        con_panel1.add(con_label1, BOTTOM_ALIGNMENT);
-        con_label2.setFont(font1);
-        con_label2.setHorizontalAlignment(JLabel.CENTER);
-        con_label2.setVerticalAlignment(JLabel.CENTER);
-        con_panel1.add(con_label2, TOP_ALIGNMENT);
+
+
+        JLabel con_label = new JLabel("<html>&nbsp;수업<br>집중도</html>");
+        con_label.setFont(font1);
+        con_label.setHorizontalAlignment(JLabel.CENTER);
+        con_label.setVerticalAlignment(JLabel.CENTER);
+        con_panel1.add(con_label);
+
 
 
         JPanel con_date_grid = new JPanel(new GridLayout(1, 5)); // 월~금 수업집중도 날짜 5X1 그리드
@@ -476,21 +466,17 @@ public class VacationWeekTable extends JFrame{
         homework_state.setBorder(border2);
 
 
-        JPanel hws_panel1 = new JPanel(new GridLayout(2, 1)); // default : FlowLayout -> 맨 위에 가운데에 설정
+        JPanel hws_panel1 = new JPanel(new BorderLayout()); // default : FlowLayout -> 맨 위에 가운데에 설정
         hws_panel1.setBounds(0, 0, 50, 90); // concentration의 (0, 0)위치에 50X90 삽입
         hws_panel1.setBorder(border1);
         hws_panel1.setBackground(light_green_color);
 
-        JLabel hws_label1 = new JLabel("과제");
-        JLabel hws_label2 = new JLabel("수행도");
-        hws_label1.setFont(font1);
-        hws_label1.setHorizontalAlignment(JLabel.CENTER);
-        hws_label1.setVerticalAlignment(JLabel.CENTER);
-        hws_panel1.add(hws_label1, BOTTOM_ALIGNMENT);
-        hws_label2.setFont(font1);
-        hws_label2.setHorizontalAlignment(JLabel.CENTER);
-        hws_label2.setVerticalAlignment(JLabel.CENTER);
-        hws_panel1.add(hws_label2, TOP_ALIGNMENT);
+
+        JLabel hws_label = new JLabel("<html>&nbsp;과제<br>수행도</html>");
+        hws_label.setFont(font1);
+        hws_label.setHorizontalAlignment(JLabel.CENTER);
+        hws_label.setVerticalAlignment(JLabel.CENTER);
+        hws_panel1.add(hws_label);
 
 
         JPanel hws_date_grid = new JPanel(new GridLayout(1, 5)); // 월~금 과제수행도 날짜 5X1 그리드
@@ -554,21 +540,17 @@ public class VacationWeekTable extends JFrame{
         planner.setBorder(border2);
 
 
-        JPanel pln_panel1 = new JPanel(new GridLayout(2, 1)); // default : FlowLayout -> 맨 위에 가운데에 설정
+        JPanel pln_panel1 = new JPanel(new BorderLayout()); // default : FlowLayout -> 맨 위에 가운데에 설정
         pln_panel1.setBounds(0, 0, 50, 90); // planner의 (0, 0)위치에 50X90 삽입
         pln_panel1.setBorder(border1);
         pln_panel1.setBackground(green_color);
 
-        JLabel pln_label1 = new JLabel("플래너");
-        JLabel pln_label2 = new JLabel("수행도");
-        pln_label1.setFont(font1);
-        pln_label1.setHorizontalAlignment(JLabel.CENTER);
-        pln_label1.setVerticalAlignment(JLabel.CENTER);
-        pln_panel1.add(pln_label1, BOTTOM_ALIGNMENT);
-        pln_label2.setFont(font1);
-        pln_label2.setHorizontalAlignment(JLabel.CENTER);
-        pln_label2.setVerticalAlignment(JLabel.CENTER);
-        pln_panel1.add(pln_label2, TOP_ALIGNMENT);
+
+        JLabel pln_label = new JLabel("<html>플래너<br>수행도</html>");
+        pln_label.setFont(font1);
+        pln_label.setHorizontalAlignment(JLabel.CENTER);
+        pln_label.setVerticalAlignment(JLabel.CENTER);
+        pln_panel1.add(pln_label);
 
         // 월~금 날짜 칸
 
@@ -802,7 +784,7 @@ public class VacationWeekTable extends JFrame{
         c.add(east_panel, BorderLayout.EAST);
         c.add(west_panel, BorderLayout.WEST);
         center.add(attendence);
-        center.add(progress);
+        center.add(progress_and_homework);
         center.add(center_grid);
 
 

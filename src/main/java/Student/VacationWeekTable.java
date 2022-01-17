@@ -768,7 +768,7 @@ public class VacationWeekTable extends JFrame{
 
         // 수업집중도~TEST란 이 들어갈 패널 (크기 지정하는 데에 있어서 반복적인 잡업을 줄이기 위해)
         JPanel center_grid = new JPanel(new GridLayout(4, 1));
-        center_grid.setBounds(0, 440, 1300, 360); // center의 0, 350위치(패널의 왼쪽 위 좌표)에 1300X450의 패널
+        center_grid.setBounds(0, 440, 1300, 360); // center의 0, 440위치(패널의 왼쪽 위 좌표)에 1300X360의 패널
         center_grid.setBorder(border2);
 
         center_grid.add(concentration);

@@ -799,7 +799,7 @@ public class VacationWeekTable extends JFrame{
 
 
         // Create test file
-        File test1 = new File(saveFilePath + sName + " " +userMonth+"월 "+userWeek+"주차"+".png");
+        File test1 = new File(saveFilePath + sName + " " +userMonth+"월 "+userWeek+"주차 주간관리표"+".png");
 
 
         // Use the ImageIO API to write the bufferedImage to a temporary file

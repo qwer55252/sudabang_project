@@ -130,7 +130,7 @@ public class Main_UI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println("저장 경로를 설정 중입니다...");
 
             FileDialog saveFileDialog = new FileDialog(main_ui, "저장 위치 설정", FileDialog.SAVE);
             saveFileDialog.setVisible(true);
@@ -138,12 +138,11 @@ public class Main_UI extends JFrame {
 
 
             //선택한 엑셀 파일의 Directory와 Filename를 받아서 읽어보자
-            System.out.println(saveFileDialog.getDirectory());
-            System.out.println(saveFileDialog.getFile());
+            System.out.println("저장 경로 : "+saveFileDialog.getDirectory());
+            System.out.println("저장할 파일 이름 : " + saveFileDialog.getFile());
 
 
-            //new ReadAndPrintExcel(filedialog.getDirectory(), filedialog.getFile());
-            //// 엑셀 읽기 성공
+            // 엑셀 읽기 성공
 
             String loadFilePath = main_ui.getLoadedExcelPath();
             String loadFileName = main_ui.getLoadedExcelName();
@@ -151,9 +150,15 @@ public class Main_UI extends JFrame {
             String userWeek = main_ui.getUserWeek();
             String userMonth = main_ui.getUserMonth();
 
-            new SaveVacationWeektable(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+            //읽은 엑셀파일을 가지고 학생별 주간 관리표 캡쳐
+            ReadExcel re = new ReadExcel(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
 
-
+            //userMonth, userWeek 주차 캡쳐 진행
+            System.out.println("파일을 저장 중입니다...");
+            for (String name : re.nameList){
+                new VacationWeekTable(re.studentList, name, userMonth, userWeek, saveFilePath);
+            }
+            System.out.println("모든 파일을 저장했습니다!");
         }
     }
 
@@ -166,16 +171,35 @@ public class Main_UI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            FileDialog filedialog = new FileDialog(main_ui, "엑셀 불러오기", FileDialog.LOAD);
-            filedialog.setVisible(true);
-            filedialog.setSize(300, 200);
+            System.out.println("저장 경로를 설정 중입니다...");
+
+            FileDialog saveFileDialog = new FileDialog(main_ui, "저장 위치 설정", FileDialog.SAVE);
+            saveFileDialog.setVisible(true);
+            saveFileDialog.setSize(300, 200);
+
 
             //선택한 엑셀 파일의 Directory와 Filename를 받아서 읽어보자
-            System.out.println(filedialog.getDirectory());
-            System.out.println(filedialog.getFile());
+            System.out.println("저장 경로 : "+saveFileDialog.getDirectory());
+            System.out.println("저장할 파일 이름 : " + saveFileDialog.getFile());
 
-            new ReadAndPrintExcel(filedialog.getDirectory(), filedialog.getFile());
+
             // 엑셀 읽기 성공
+
+            String loadFilePath = main_ui.getLoadedExcelPath();
+            String loadFileName = main_ui.getLoadedExcelName();
+            String saveFilePath = saveFileDialog.getDirectory();
+            String userWeek = main_ui.getUserWeek();
+            String userMonth = main_ui.getUserMonth();
+
+            //읽은 엑셀파일로 데이터 만들기
+            ReadExcel re = new ReadExcel(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+
+            //userMonth, userWeek 주차 캡쳐 진행
+            System.out.println("파일을 저장 중입니다...");
+            for (String name : re.nameList){
+                new SemesterWeekTable(re.studentList, name, userMonth, userWeek, saveFilePath);
+            }
+            System.out.println("모든 파일을 저장했습니다!");
         }
     }
 
@@ -188,12 +212,16 @@ public class Main_UI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            System.out.println("엑셀을 불러오는 중입니다...");
+
             FileDialog loadFileDialog = new FileDialog(main_ui, "엑셀 불러오기", FileDialog.LOAD);
             loadFileDialog.setVisible(true);
             loadFileDialog.setSize(300, 200);
 
             main_ui.setLoadedExcelPath(loadFileDialog.getDirectory());
             main_ui.setLoadedExcelName(loadFileDialog.getFile());
+
+            System.out.println("엑셀을 성공적으로 불러왔습니다!");
         }
     }
 

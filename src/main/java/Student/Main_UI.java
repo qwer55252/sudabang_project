@@ -76,7 +76,7 @@ public class Main_UI extends JFrame {
         semester_weektable_capture_btn.addActionListener(new semester_ActionListener(this));
         //semester_clinic_weektabel_catture_btn.addActionListener(new semester_clinic_ActionListener(this));
         vacation_weektable_capture_btn.addActionListener(new vacation_ActionListener(this));
-        //vacation_clinic_weektable_capture_btn.addActionListener(new vacation_clinic_ActionListener(this));
+        vacation_clinic_weektable_capture_btn.addActionListener(new vacation_Clinic_ActionListener(this));
 
 
 
@@ -121,7 +121,7 @@ public class Main_UI extends JFrame {
         }
     }
 
-    // 집중반 버튼 액션 리스너
+    // 집중반 주간관리표 버튼 액션 리스너
     class vacation_ActionListener implements ActionListener {
         private Main_UI main_ui;
         public vacation_ActionListener(Main_UI main_ui) {
@@ -137,13 +137,6 @@ public class Main_UI extends JFrame {
             saveFileDialog.setSize(300, 200);
 
 
-            //선택한 엑셀 파일의 Directory와 Filename를 받아서 읽어보자
-            System.out.println("저장 경로 : "+saveFileDialog.getDirectory());
-            System.out.println("저장할 파일 이름 : " + saveFileDialog.getFile());
-
-
-            // 엑셀 읽기 성공
-
             String loadFilePath = main_ui.getLoadedExcelPath();
             String loadFileName = main_ui.getLoadedExcelName();
             String saveFilePath = saveFileDialog.getDirectory();
@@ -151,7 +144,7 @@ public class Main_UI extends JFrame {
             String userMonth = main_ui.getUserMonth();
 
             //읽은 엑셀파일을 가지고 학생별 주간 관리표 캡쳐
-            ReadExcel re = new ReadExcel(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+            ReadSheet re = new ReadSheet(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
 
             //userMonth, userWeek 주차 캡쳐 진행
             System.out.println("파일을 저장 중입니다...");
@@ -162,7 +155,42 @@ public class Main_UI extends JFrame {
         }
     }
 
-    // 정규반 버튼 액션 리스너
+    // 집중반 클리닉 주간관리표 액션 리스너
+    class vacation_Clinic_ActionListener implements  ActionListener {
+        private Main_UI main_ui;
+        public vacation_Clinic_ActionListener(Main_UI main_ui) {
+            this.main_ui = main_ui;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("저장 경로를 설정 중입니다...");
+
+
+            FileDialog saveFileDialog = new FileDialog(main_ui, "저장 위치 설정", FileDialog.SAVE);
+            saveFileDialog.setVisible(true);
+            saveFileDialog.setSize(300, 200);
+
+            String loadFilePath = main_ui.getLoadedExcelPath();
+            String loadFileName = main_ui.getLoadedExcelName();
+            String saveFilePath = saveFileDialog.getDirectory();
+            String userWeek = main_ui.getUserWeek();
+            String userMonth = main_ui.getUserMonth();
+
+
+            // 선택한 엑셀 파일의 학습관리표2 시트 읽기
+            ReadClinicSheet re = new ReadClinicSheet(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+
+            //userMonth, userWeek 주차 캡쳐 진행
+            System.out.println("파일을 저장 중입니다...");
+            for (String name : re.nameList){
+                new VacationClinicWeekTable(re.studentList, name, userMonth, userWeek, saveFilePath);
+            }
+            System.out.println("모든 파일을 저장했습니다!");
+        }
+    }
+
+    // 정규반 주간관리표  버튼 액션 리스너
     class semester_ActionListener implements ActionListener {
         private Main_UI main_ui;
         public semester_ActionListener(Main_UI main_ui) {
@@ -192,7 +220,7 @@ public class Main_UI extends JFrame {
             String userMonth = main_ui.getUserMonth();
 
             //읽은 엑셀파일로 데이터 만들기
-            ReadExcel re = new ReadExcel(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+            ReadSheet re = new ReadSheet(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
 
             //userMonth, userWeek 주차 캡쳐 진행
             System.out.println("파일을 저장 중입니다...");
@@ -202,6 +230,7 @@ public class Main_UI extends JFrame {
             System.out.println("모든 파일을 저장했습니다!");
         }
     }
+
 
     // 엑셀 불러오기 버튼 액션 리스너
     class loadExcel_ActionListener implements ActionListener {

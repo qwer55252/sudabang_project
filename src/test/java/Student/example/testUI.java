@@ -1,17 +1,21 @@
-package Student;
+package Student.example;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
+
+
+
 import javax.swing.border.LineBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-import java.awt.*;
 import java.util.ArrayList;
 
 
-public class VacationClinicWeekTable extends JFrame {
+public class testUI extends JFrame {
 
-    VacationClinicWeekTable() {
+    public testUI() {
         setTitle("클리닉 주간관리표 GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -42,7 +46,7 @@ public class VacationClinicWeekTable extends JFrame {
 
         // title - NORTH
         JPanel title = new JPanel(); // NORTH
-        title.setPreferredSize(new Dimension(this.getWidth(), 40));
+        title.setPreferredSize(new Dimension(this.getWidth(), 30));
         title.setBackground(Color.white);
 
 
@@ -50,30 +54,25 @@ public class VacationClinicWeekTable extends JFrame {
 //        title_label.setFont(title_font);
 //        title_label.setHorizontalAlignment(JLabel.CENTER);
 //        title.add(title_label);
-        JLabel title_label = new JLabel("< OOO 학생 O월 O주차 클리닉 보고서 >");
-        title_label.setFont(title_font);
-        title_label.setHorizontalAlignment(JLabel.CENTER);
-        title.add(title_label);
 
 
         JPanel center = new JPanel();
         center.setLayout(null);
-
+        center.setBackground(Color.red); // 확인차 레드레드
 
 
 
 
         //------------------------------------------------------------
         // 위 패널
-        
         // <날짜 패널>
         JPanel topPanel = new JPanel();
         topPanel.setLayout(null);
         topPanel.setBounds(0, 0, 900, 280); // center의 0,0 위치에 900X280 삽입
         topPanel.setBorder(border2);
+        topPanel.setBackground(Color.red);
 
-        
-        
+
         JPanel topDatePanel = new JPanel();
         topDatePanel.setLayout(null);
         topDatePanel.setBounds(0, 0, 100, 280); // topPanel 0, 0 위치에 100X280 삽입
@@ -97,27 +96,19 @@ public class VacationClinicWeekTable extends JFrame {
         topDatePanel_grid.setBorder(border1);
 
         for(int i=0;i<5;i++){
-            JPanel topDatePanel_grid_elem = new JPanel(new BorderLayout());
+            JPanel topDatePanel_grid_elem = new JPanel();
             topDatePanel_grid_elem.setBorder(border1);
             topDatePanel_grid_elem.setBackground(light_gray_color);
 //            JLabel i_th_dateLabel = new JLabel(printList.get(i).getDate());
 //            i_th_dateLabel.setFont(plainFont);
 //            topDatePanel_grid_elem.add(i_th_dateLabel); //정보 저장
-
-            JLabel i_th_dateLabel = new JLabel("OOOO.OO.OO");
-            i_th_dateLabel.setFont(plainFont);
-            i_th_dateLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_dateLabel.setVerticalAlignment(JLabel.CENTER);
-            topDatePanel_grid_elem.add(i_th_dateLabel); //정보 저장
-
-
-            topDatePanel_grid.add(topDatePanel_grid_elem, BorderLayout.CENTER);
+            topDatePanel_grid.add(topDatePanel_grid_elem);
         }
 
         topDatePanel.add(topDatePanel_1);
         topDatePanel.add(topDatePanel_grid);
 
-        
+
         // <출석시간 패널>
         JPanel topAttPanel = new JPanel();
         topAttPanel.setLayout(null);
@@ -132,35 +123,29 @@ public class VacationClinicWeekTable extends JFrame {
         JPanel topAttPanel_1 = new JPanel(new BorderLayout());
         topAttPanel_1.setBounds(0, 0, 100, 30);
         topAttPanel_1.setBorder(border1);
-        topAttPanel_1.setBackground(light_yellow_color);
+        topAttPanel_1.setBackground(light_red_color);
         topAttPanel_1.add(topAttLabel);
-        
+
         JPanel topAttPanel_grid = new JPanel(new GridLayout(5, 1)); // 출석시간 밑 5개의 grid칸
         topAttPanel_grid.setBounds(0, 30, 100, 250); // topAttPanel의 0, 30위치에 100X250 삽입
         topAttPanel_grid.setBorder(border1);
-        
+
         for(int i=0;i<5;i++){
-            JPanel topAttPanel_grid_elem = new JPanel(new BorderLayout());
+            JPanel topAttPanel_grid_elem = new JPanel();
             topAttPanel_grid_elem.setBorder(border1);
-            topAttPanel_grid_elem.setBackground(light_gray_color);
+            topAttPanel_grid_elem.setBackground(light_yellow_color);
 //            JLabel i_th_attLabel = new JLabel(printList.get(i).getTextbook());
 //            i_th_attLabel.setFont(plainFont);
 //            topAttPanel_grid_elem.add(i_th_attLabel); //정보 저장
-
-            JLabel i_th_attLabel = new JLabel("오전 OO:OO");
-            i_th_attLabel.setFont(plainFont);
-            i_th_attLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_attLabel.setVerticalAlignment(JLabel.CENTER);
-            topAttPanel_grid_elem.add(i_th_attLabel, BorderLayout.CENTER); //정보 저장
 
             topAttPanel_grid.add(topAttPanel_grid_elem);
         }
 
         topAttPanel.add(topAttPanel_1);
         topAttPanel.add(topAttPanel_grid);
-        
-        
-        
+
+
+
         // <단원명 패널>
         JPanel topUnitPanel = new JPanel();
         topUnitPanel.setLayout(null);
@@ -183,18 +168,12 @@ public class VacationClinicWeekTable extends JFrame {
         topUnitPanel_grid.setBorder(border1);
 
         for(int i=0;i<5;i++){
-            JPanel topUnitPanel_grid_elem = new JPanel(new BorderLayout());
+            JPanel topUnitPanel_grid_elem = new JPanel();
             topUnitPanel_grid_elem.setBorder(border1);
-            topUnitPanel_grid_elem.setBackground(light_gray_color);
+            topUnitPanel_grid_elem.setBackground(light_yellow_color);
 //            JLabel i_th_unitLabel = new JLabel(printList.get(i).getTextbook());
 //            i_th_unitLabel.setFont(plainFont);
 //            topUnitPanel_grid_elem.add(i_th_unitLabel); //정보 저장
-
-            JLabel i_th_unitLabel = new JLabel("OOO ~ OOO");
-            i_th_unitLabel.setFont(plainFont);
-            i_th_unitLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_unitLabel.setVerticalAlignment(JLabel.CENTER);
-            topUnitPanel_grid_elem.add(i_th_unitLabel, BorderLayout.CENTER); //정보 저장
 
             topUnitPanel_grid.add(topUnitPanel_grid_elem);
         }
@@ -215,30 +194,22 @@ public class VacationClinicWeekTable extends JFrame {
         topWeakLabel.setVerticalAlignment(JLabel.CENTER);
 
         JPanel topWeakPanel_1 = new JPanel(new BorderLayout());
-        topWeakPanel_1.setBounds(0, 0, 500, 30);
+        topWeakPanel_1.setBounds(0, 0, 100, 30);
         topWeakPanel_1.setBorder(border1);
         topWeakPanel_1.setBackground(light_blue_color);
         topWeakPanel_1.add(topWeakLabel);
 
         JPanel topWeakPanel_grid = new JPanel(new GridLayout(5, 1)); // 출석시간 밑 5개의 grid칸
-        topWeakPanel_grid.setBounds(0, 30, 500, 250); // topAttPanel의 0, 30위치에 100X250 삽입
+        topWeakPanel_grid.setBounds(0, 30, 100, 250); // topAttPanel의 0, 30위치에 100X250 삽입
         topWeakPanel_grid.setBorder(border1);
 
         for(int i=0;i<5;i++){
-            JPanel topWeakPanel_grid_elem = new JPanel(new BorderLayout());
+            JPanel topWeakPanel_grid_elem = new JPanel();
             topWeakPanel_grid_elem.setBorder(border1);
-            topWeakPanel_grid_elem.setBackground(light_gray_color);
-
+            topWeakPanel_grid_elem.setBackground(light_yellow_color);
 //            JLabel i_th_weakLabel = new JLabel(printList.get(i).getTextbook());
 //            i_th_weakLabel.setFont(plainFont);
 //            topWeakPanel_grid_elem.add(i_th_weakLabel); //정보 저장
-
-            JLabel i_th_weakLabel = new JLabel("~");
-            i_th_weakLabel.setFont(plainFont);
-            i_th_weakLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_weakLabel.setVerticalAlignment(JLabel.CENTER);
-
-            topWeakPanel_grid_elem.add(i_th_weakLabel, BorderLayout.CENTER); //정보 저장
 
             topWeakPanel_grid.add(topWeakPanel_grid_elem);
         }
@@ -269,19 +240,12 @@ public class VacationClinicWeekTable extends JFrame {
         topAchPanel_grid.setBorder(border1);
 
         for(int i=0;i<5;i++){
-            JPanel topAchPanel_grid_elem = new JPanel(new BorderLayout());
+            JPanel topAchPanel_grid_elem = new JPanel();
             topAchPanel_grid_elem.setBorder(border1);
-            topAchPanel_grid_elem.setBackground(light_gray_color);
-
+            topAchPanel_grid_elem.setBackground(light_yellow_color);
 //            JLabel i_th_achLabel = new JLabel(printList.get(i).getTextbook());
 //            i_th_achLabel.setFont(plainFont);
 //            topAchPanel_grid_elem.add(i_th_achLabel); //정보 저장
-
-            JLabel i_th_achLabel = new JLabel("O");
-            i_th_achLabel.setFont(plainFont);
-            i_th_achLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_achLabel.setVerticalAlignment(JLabel.CENTER);
-            topAchPanel_grid_elem.add(i_th_achLabel, BorderLayout.CENTER); //정보 저장
 
             topAchPanel_grid.add(topAchPanel_grid_elem);
         }
@@ -289,7 +253,7 @@ public class VacationClinicWeekTable extends JFrame {
         topAchPanel.add(topAchPanel_1);
         topAchPanel.add(topAchPanel_grid);
 
-        
+
 
         topPanel.add(topDatePanel);
         topPanel.add(topAttPanel);
@@ -304,7 +268,7 @@ public class VacationClinicWeekTable extends JFrame {
         bottomPanel.setLayout(null);
         bottomPanel.setBounds(0, 280, 900, 280); // center의 0,280 위치에 900X280 삽입
         bottomPanel.setBorder(border2);
-
+        bottomPanel.setBackground(Color.red);
 
 
         JPanel bottomDatePanel = new JPanel();
@@ -330,20 +294,12 @@ public class VacationClinicWeekTable extends JFrame {
         bottomDatePanel_grid.setBorder(border1);
 
         for(int i=0;i<5;i++){
-            JPanel bottomDatePanel_grid_elem = new JPanel(new BorderLayout());
+            JPanel bottomDatePanel_grid_elem = new JPanel();
             bottomDatePanel_grid_elem.setBorder(border1);
             bottomDatePanel_grid_elem.setBackground(light_gray_color);
-
             //JLabel i_th_dateLabel = new JLabel(printList.get(i).getDate());
             //i_th_dateLabel.setFont(plainFont);
             //bottomDatePanel_grid_elem.add(i_th_dateLabel); //정보 저장
-
-            JLabel i_th_dateLabel = new JLabel("OOOO.OO.OO");
-            i_th_dateLabel.setFont(plainFont);
-            i_th_dateLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_dateLabel.setVerticalAlignment(JLabel.CENTER);
-            bottomDatePanel_grid_elem.add(i_th_dateLabel, BorderLayout.CENTER); //정보 저장
-
             bottomDatePanel_grid.add(bottomDatePanel_grid_elem);
         }
 
@@ -352,81 +308,18 @@ public class VacationClinicWeekTable extends JFrame {
 
 
 
-        // <특이사항 및 조치사항 패널>
-        JPanel bottomDCPanel = new JPanel(); // DC - Detail Course
-        bottomDCPanel.setLayout(null);
-        bottomDCPanel.setBounds(100, 0, 500, 280); // bottom의 (100, 0)위치에 500X280 삽입
-        bottomDCPanel.setBorder(border1);
-
-        JLabel bottomDCLabel = new JLabel("특이사항 및 조치사항");
-        bottomDCLabel.setFont(font2);
-        bottomDCLabel.setHorizontalAlignment(JLabel.CENTER);
-        bottomDCLabel.setVerticalAlignment(JLabel.CENTER);
-
-        JPanel bottomDCPanel_1 = new JPanel(new BorderLayout());
-        bottomDCPanel_1.setBounds(0, 0, 500, 30);
-        bottomDCPanel_1.setBorder(border1);
-        bottomDCPanel_1.setBackground(light_red_color);
-        bottomDCPanel_1.add(bottomDCLabel);
-
-        JPanel bottomDCPanel_grid = new JPanel(new GridLayout(5, 1)); // 출석시간 밑 5개의 grid칸
-        bottomDCPanel_grid.setBounds(0, 30, 500, 250); // bottomDCPanel의 0, 30위치에 500X250 삽입
-        bottomDCPanel_grid.setBorder(border1);
-
-        for(int i=0;i<5;i++){
-            JPanel bottomDCPanel_grid_elem = new JPanel(new BorderLayout());
-            bottomDCPanel_grid_elem.setBorder(border1);
-            bottomDCPanel_grid_elem.setBackground(light_gray_color);
-
-//            JLabel i_th_DCLabel = new JLabel(printList.get(i).getTextbook());
-//            i_th_DCLabel.setFont(plainFont);
-//            bottomDCPanel_grid_elem.add(i_th_attLabel); //정보 저장
-
-            JLabel i_th_DCLabel = new JLabel("~");
-            i_th_DCLabel.setFont(plainFont);
-            i_th_DCLabel.setHorizontalAlignment(JLabel.CENTER);
-            i_th_DCLabel.setVerticalAlignment(JLabel.CENTER);
-            bottomDCPanel_grid_elem.add(i_th_DCLabel, BorderLayout.CENTER); //정보 저장
-
-            bottomDCPanel_grid.add(bottomDCPanel_grid_elem);
-        }
-
-        bottomDCPanel.add(bottomDCPanel_1);
-        bottomDCPanel.add(bottomDCPanel_grid);
 
 
-        // <설명 패널>
-        JPanel bottom_third_Panel = new JPanel();
-        bottom_third_Panel.setBounds(600, 0, 300, 280);
-        bottom_third_Panel.setBorder(border2);
-        JLabel bottom_third_Panel_label = new JLabel("<html><br><br>" +
-                "* 단계별 성취사항<br>" +
-                "(오답유형을 전부 해결하지 못할 시 추가 클리닉)<br><br>" +
-                "1단계 : 클리닉 참여하지 않은 경우<br><br>" +
-                "2단계 : 오답유형 해결<br><br>" +
-                "3단계 : 오답유형 + 유사문항 해결<br><br></html>");
-        bottom_third_Panel_label.setFont(font1);
-        bottom_third_Panel_label.setHorizontalAlignment(JLabel.CENTER);
-        bottom_third_Panel_label.setVerticalAlignment(JLabel.CENTER);
 
-        bottom_third_Panel.add(bottom_third_Panel_label);
-
-        
-        
-        bottomPanel.add(bottomDatePanel);
-        bottomPanel.add(bottomDCPanel);
-        bottomPanel.add(bottom_third_Panel);
-        // <bottomPanel 작업 끝>
 
 
         // <여백>
         JPanel west_panel = new JPanel();
-        west_panel.setPreferredSize(new Dimension(20, 560));
-
+        west_panel.setPreferredSize(new Dimension(20, this.getHeight()));
         west_panel.setBackground(Color.white);
 
         JPanel east_panel = new JPanel();
-        east_panel.setPreferredSize(new Dimension(20, 560));
+        east_panel.setPreferredSize(new Dimension(20, this.getHeight()));
         east_panel.setBackground(Color.white);
 
 
@@ -441,13 +334,14 @@ public class VacationClinicWeekTable extends JFrame {
 
 
 
-        setSize(940, 620);
+        setSize(900, 600);
         setVisible(true);
 //        dispose();
 
     }
 
     public static void main(String[] args) {
-        new VacationClinicWeekTable();
+        new testUI();
     }
+
 }

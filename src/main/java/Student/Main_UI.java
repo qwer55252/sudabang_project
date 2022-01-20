@@ -123,7 +123,7 @@ public class Main_UI extends JFrame {
 
 
         setVisible(true);
-        setSize(600, 300);
+        setSize(1000, 300);
 
     }
 

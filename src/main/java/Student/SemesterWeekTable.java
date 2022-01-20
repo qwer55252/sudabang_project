@@ -86,10 +86,10 @@ public class SemesterWeekTable extends JFrame {
 
         //------------------------------------------------------------
         // <출석 란>
-        JPanel attendence = new JPanel(); // 1X4 패널
-        attendence.setLayout(null);
-        attendence.setBorder(border2);
-        attendence.setBounds(0, 0, 840, 90);
+        JPanel attendance = new JPanel(); // 1X4 패널
+        attendance.setLayout(null);
+        attendance.setBorder(border2);
+        attendance.setBounds(0, 0, 840, 90);
 
         JPanel att_panel1 = new JPanel(new BorderLayout()); // default : FlowLayout -> 맨 위에 가운데에 설정
         att_panel1.setBounds(0, 0, 90, 90);
@@ -186,11 +186,11 @@ public class SemesterWeekTable extends JFrame {
         att_panel4.add(new JLabel(" 퇴원 처리 됩니다."));
 
 
-        attendence.add(att_panel1);
-        attendence.add(att_panel2);
-        attendence.add(att_panel3);
-        attendence.add(att_panel4);
-        attendence.setBackground(Color.blue);
+        attendance.add(att_panel1);
+        attendance.add(att_panel2);
+        attendance.add(att_panel3);
+        attendance.add(att_panel4);
+        attendance.setBackground(Color.blue);
 
 
         //------------------------------------------------------------
@@ -915,7 +915,7 @@ public class SemesterWeekTable extends JFrame {
         c.add(center, BorderLayout.CENTER);
         c.add(east_panel, BorderLayout.EAST);
         c.add(west_panel, BorderLayout.WEST);
-        center.add(attendence);
+        center.add(attendance);
         center.add(progress);
         center.add(concentration);
         center.add(homework_state);

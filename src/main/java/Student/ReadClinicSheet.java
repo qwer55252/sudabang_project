@@ -35,7 +35,7 @@ public class ReadClinicSheet {
     public ReadClinicSheet(String loadFilePath, String loadFileName, String saveFilePath, String userMonth, String userWeek) {
         this.loadFilePath = loadFilePath;
         this.loadFileName = loadFileName;
-        this.saveFilePath = saveFilePath;
+        this.saveFilePath = saveFilePath; // 필요 없음
         this.userMonth = userMonth;
         this.userWeek = userWeek;
 

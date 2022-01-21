@@ -1,11 +1,15 @@
 package Student;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SemesterClinicWeekTable extends JFrame {
@@ -19,27 +23,9 @@ public class SemesterClinicWeekTable extends JFrame {
                 printList.add(studentClinicData);
             }
         }
-        int printSize = printList.size();
-        //부족한 수만큼 '-'데이터로 채운 학생 인스턴스 추가
-        for(int i=0;i<5-printSize;i++){
-            StudentClinicData nullData = new StudentClinicData();
-            nullData.setDate("-");
-            nullData.setAttendance("-");
-            nullData.setName(sName);
-            nullData.setUnitName("-");
-            nullData.setAchivementLevel("-");
-            nullData.setWeakUnit("-");
-            nullData.setDetailCourse("-");
-            nullData.setMonth("-");
-            nullData.setWeek("-");
-            nullData.setMonth_weekNum("-");
-            nullData.setCount("-");
-            nullData.setName_month_weekNum("-");
-            nullData.setName_month_weekNum_count("-");
-            printList.add(nullData);
-        }
 
-
+        // 정규반 클리닉은 일주일에 한 번 밖에 없음
+        // printList(0)만 사용
 
         setTitle("정규반 클리닉 주간관리표 GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -208,16 +194,16 @@ public class SemesterClinicWeekTable extends JFrame {
         cln_prg_panel2_2.setBackground(light_gray_color);
         cln_prg_panel2_2.setBorder(border1);
 
-        // 특이사항 및 조치사항 란이 작동기 때문에 자동 줄바꿈 처리가 되는 JTextPane사용
+        // 단원명 란이 작동기 때문에 자동 줄바꿈 처리가 되는 JTextPane사용
         JTextPane textPane_UnitName = new JTextPane();
         textPane_UnitName.setEditable(false);
         textPane_UnitName.setBackground(light_gray_color);
         textPane_UnitName.setText(printList.get(0).getUnitName());
         //tpName의 styleDocument를 가져와 가운데 정렬 설정
-        StyledDocument doc = textPane_UnitName.getStyledDocument();
-        SimpleAttributeSet ce = new SimpleAttributeSet();
-        StyleConstants.setAlignment(ce, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc.getLength(), ce, false);
+        StyledDocument doc_UnitName = textPane_UnitName.getStyledDocument();
+        SimpleAttributeSet ce_UnitName = new SimpleAttributeSet();
+        StyleConstants.setAlignment(ce_UnitName, StyleConstants.ALIGN_CENTER);
+        doc_UnitName.setParagraphAttributes(0, doc_UnitName.getLength(), ce_UnitName, false);
 
         cln_prg_panel2_2.add(textPane_UnitName);
 
@@ -277,17 +263,17 @@ public class SemesterClinicWeekTable extends JFrame {
         cln_prg_panel3_2.setBorder(border1);
         cln_prg_panel3_2.setBackground(light_gray_color);
 
-        // 특이사항 및 조치사항 란이 작동기 때문에 자동 줄바꿈 처리가 되는 JTextPane사용
+        // 취약유형 란이 작동기 때문에 자동 줄바꿈 처리가 되는 JTextPane사용
         JTextPane textPane_WeakUnit = new JTextPane();
         textPane_WeakUnit.setEditable(false);
         textPane_WeakUnit.setBackground(light_gray_color);
         textPane_WeakUnit.setText(printList.get(0).getWeakUnit());
 
         //tpName의 styleDocument를 가져와 가운데 정렬 설정
-        StyledDocument weakUnit_doc = textPane_WeakUnit.getStyledDocument();
-        SimpleAttributeSet weakUnit_ce = new SimpleAttributeSet();
-        StyleConstants.setAlignment(weakUnit_ce, StyleConstants.ALIGN_CENTER);
-        weakUnit_doc.setParagraphAttributes(0, weakUnit_doc.getLength(), weakUnit_ce, false);
+        StyledDocument doc_WeakUnit = textPane_WeakUnit.getStyledDocument();
+        SimpleAttributeSet ce_WeakUnit = new SimpleAttributeSet();
+        StyleConstants.setAlignment(ce_WeakUnit, StyleConstants.ALIGN_CENTER);
+        doc_WeakUnit.setParagraphAttributes(0, doc_WeakUnit.getLength(), ce_WeakUnit, false);
 
         cln_prg_panel3_2.add(textPane_WeakUnit);
 
@@ -378,14 +364,28 @@ public class SemesterClinicWeekTable extends JFrame {
         c.add(west_panel, BorderLayout.WEST);
         c.add(east_panel, BorderLayout.EAST);
 
-        
-        setVisible(true);
+
+
         setSize(670, 650);
-    }
+        setVisible(true);
 
-    public static void main(String[] args) {
 
-        new SemesterClinicWeekTable(new ArrayList<StudentClinicData>(), "", "", "", "");
+
+        // Create test file
+        File saveFile = new File(saveFilePath + sName + " " +userMonth+"월 "+userWeek+"주차 클리닉 주간관리표.png");
+
+
+        // Use the ImageIO API to write the bufferedImage to a temporary file
+        try {
+            BufferedImage im = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = im.createGraphics();
+            c.printAll(g2d);
+
+            g2d.dispose();
+            ImageIO.write(im, "png", saveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

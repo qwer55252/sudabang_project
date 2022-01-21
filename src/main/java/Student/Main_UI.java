@@ -106,7 +106,7 @@ public class Main_UI extends JFrame {
 
         // filedialog의 parent를 지정해주기 위해 ActionListener에 this(main_ui)를 보내준다.
         semester_weektable_capture_btn.addActionListener(new semester_ActionListener(this));
-        //semester_clinic_weektabel_catture_btn.addActionListener(new semester_clinic_ActionListener(this));
+        semester_clinic_weektabel_catture_btn.addActionListener(new semester_Clinic_ActionListener(this));
         vacation_weektable_capture_btn.addActionListener(new vacation_ActionListener(this));
         vacation_clinic_weektable_capture_btn.addActionListener(new vacation_Clinic_ActionListener(this));
 
@@ -242,7 +242,21 @@ public class Main_UI extends JFrame {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
+            String loadFilePath = main_ui.getLoadedExcelPath();
+            String loadFileName = main_ui.getLoadedExcelName();
+            String saveFilePath = main_ui.getSaveExcelPath();
+            String userWeek = main_ui.getUserWeek();
+            String userMonth = main_ui.getUserMonth();
 
+            // 선택한 엑셀 파일의 학습관리표2 시트 읽기
+            ReadClinicSheet re = new ReadClinicSheet(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+
+            //userMonth, userWeek 주차 캡쳐 진행
+            System.out.println("파일을 저장 중입니다...");
+            for (String name : re.nameList){
+                new SemesterClinicWeekTable(re.studentList, name, userMonth, userWeek, saveFilePath);
+            }
+            System.out.println("모든 파일을 저장했습니다!");
         }
     }
 

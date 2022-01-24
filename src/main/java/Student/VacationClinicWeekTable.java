@@ -18,12 +18,14 @@ public class VacationClinicWeekTable extends JFrame {
     VacationClinicWeekTable(ArrayList<StudentClinicData> sList, String sName, String userMonth, String userWeek, String saveFilePath) {
         this.saveFilePath = saveFilePath;
 
-        //        int k = 0; //k는 몇 번째 학생인지 -> 테스트용
+        //int k = 0; //k는 몇 번째 학생인지 -> 테스트용
         ArrayList<StudentClinicData> printList = new ArrayList<StudentClinicData>(); //출력할 학생의 정보들
         for (StudentClinicData studentClinicData : sList) { // 주간관리표 한 줄에 대하여
             if (studentClinicData.getName().equals(sName) && (studentClinicData.getMonth().equals(userMonth) && studentClinicData.getWeek().equals(userWeek))){
                 printList.add(studentClinicData);
             }
+            //System.out.println("studentClinicData("+k+") : "+studentClinicData);
+            //k++;
         }
         int printSize = printList.size();
         //부족한 수만큼 '-'데이터로 채운 학생 인스턴스 추가
@@ -464,7 +466,7 @@ public class VacationClinicWeekTable extends JFrame {
 
         setSize(940, 620);
         setVisible(true);
-//        dispose();
+        //dispose();
 
 
 

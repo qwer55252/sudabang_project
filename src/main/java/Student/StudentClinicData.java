@@ -125,6 +125,25 @@ public class StudentClinicData {
 
     }
 
+    @Override
+    public String toString() {
+        return "StudentClinicData{" +
+                "date='" + date + '\'' +
+                ", attendance='" + attendance + '\'' +
+                ", name='" + name + '\'' +
+                ", unitName='" + unitName + '\'' +
+                ", achivementLevel='" + achivementLevel + '\'' +
+                ", weakUnit='" + weakUnit + '\'' +
+                ", detailCourse='" + detailCourse + '\'' +
+                ", month='" + month + '\'' +
+                ", week='" + week + '\'' +
+                ", month_weekNum='" + month_weekNum + '\'' +
+                ", Count='" + Count + '\'' +
+                ", name_month_weekNum='" + name_month_weekNum + '\'' +
+                ", name_month_weekNum_count='" + name_month_weekNum_count + '\'' +
+                '}';
+    }
+
     public StudentClinicData(String date, String attendance, String name, String unitName, String achivementLevel, String weakUnit, String detailCourse, String month, String week, String month_weekNum, String Count, String name_month_weekNum, String name_month_weekNum_count) {
         this.date = date;
         this.attendance = attendance;

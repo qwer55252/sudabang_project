@@ -207,7 +207,7 @@ public class Main_UI extends JFrame {
         }
     }
 
-    // 정규반 주간관리표  버튼 액션 리스너
+    // 정규반 주간관리표 버튼 액션 리스너
     class semester_ActionListener implements ActionListener {
         private Main_UI main_ui;
         public semester_ActionListener(Main_UI main_ui) {
@@ -224,6 +224,10 @@ public class Main_UI extends JFrame {
 
             //읽은 엑셀파일로 데이터 만들기
             ReadSheet re = new ReadSheet(loadFilePath, loadFileName, saveFilePath, userMonth, userWeek); // filePath, fileName의 userWeek주차 주간관리표 캡처
+
+
+            System.out.println(re.getNameList());
+
 
             //userMonth, userWeek 주차 캡쳐 진행
             System.out.println("파일을 저장 중입니다...");

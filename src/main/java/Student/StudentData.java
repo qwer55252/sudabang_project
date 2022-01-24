@@ -123,6 +123,24 @@ public class StudentData {
 
     }
 
+    @Override
+    public String toString() {
+        return "StudentData{" +
+                "name='" + name + '\'' +
+                ", attendance='" + attendance + '\'' +
+                ", assignment_performance='" + assignment_performance + '\'' +
+                ", planner_performance='" + planner_performance + '\'' +
+                ", concentration='" + concentration + '\'' +
+                ", test_score='" + test_score + '\'' +
+                ", assignment_comment='" + assignment_comment + '\'' +
+                ", textbook='" + textbook + '\'' +
+                ", progress='" + progress + '\'' +
+                ", date='" + date + '\'' +
+                ", week_num='" + week_num + '\'' +
+                ", month='" + month + '\'' +
+                ", week='" + week + '\'' +
+                '}';
+    }
 
     public StudentData(String week_num, String name, String attendance, String assignment_performance, String planner_performance, String concentration, String test_score, String assignment_comment, String textbook, String progress, String date, String month, String week) {
         this.name = name;

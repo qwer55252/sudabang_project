@@ -17,7 +17,8 @@ public class SemesterWeekTable extends JFrame {
     // JFrmae 위에 JPanel에 swing을 붙이는게 좋을까?
 
     public SemesterWeekTable(ArrayList<StudentData> sList, String sName, String userMonth, String userWeek, String saveFilePath) {
-        int k = 0; //k는 몇 번째 학생인지 -> 테스트용
+
+        //int k = 0; //k는 몇 번째 학생인지 -> 테스트용
         ArrayList<StudentData> printList = new ArrayList<StudentData>(); //출력할 학생의 정보들
         for (StudentData studentData : sList) { // 주간관리표 한 줄에 대하여
             if (studentData.getName().equals(sName) && (studentData.getMonth().equals(userMonth) && studentData.getWeek().equals(userWeek))){

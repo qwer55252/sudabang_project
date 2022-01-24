@@ -49,7 +49,6 @@ public class SemesterClinicWeekTable extends JFrame {
         Color green_color = new Color(102, 204, 0);
 
         // Border
-
         LineBorder border1 = new LineBorder(Color.white, 1);
         LineBorder border2 = new LineBorder(Color.white, 2);
 
@@ -368,6 +367,7 @@ public class SemesterClinicWeekTable extends JFrame {
 
         setSize(670, 650);
         setVisible(true);
+        dispose();
 
 
 

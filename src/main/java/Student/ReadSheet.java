@@ -21,6 +21,13 @@ public class ReadSheet {
     public ArrayList<StudentData> studentList;
     public ArrayList<String> nameList;
 
+    public ArrayList<String> getNameList() {
+        return nameList;
+    }
+    public ArrayList<StudentData> getStudentList() {
+        return studentList;
+    }
+
     //Row가 비었는지 확인하는 메서드
     public static boolean isRowEmpty(Row row) {
         int c = row.getFirstCellNum()+2;
@@ -73,7 +80,7 @@ public class ReadSheet {
                 // 각각의 행에 존재하는 모든 열(cell)을 순회한다.
                 Iterator<Cell> cellIterator = row.cellIterator();
                 StudentData s = new StudentData(); //학생 한 명의 정보를 저장할 객체 -> studentList에 넣어줄거임
-                int cellCnt = 0; //11번째 셀 까지만
+                int cellCnt = 0; //13번째 셀 까지만
                 while (cellIterator.hasNext() && cellCnt!=13) {
                     Cell cell = cellIterator.next();
                     if(cellCnt==0){ //순번 무시
@@ -87,26 +94,27 @@ public class ReadSheet {
                             if (DateUtil.isCellDateFormatted(cell)&&cellCnt==1) { //문제 해결: 날짜 포멧인 경우엔 예외로 처리해줘야함
                                 Date date = cell.getDateCellValue();
                                 value = new SimpleDateFormat("yyyy.MM.dd").format(date); //저장할 날짜 포맷
-//                                System.out.print("<" + value + ">");
+                                System.out.print("<" + value + ">");
                             }
                             else if(cellCnt==3){ //출결
                                 SimpleDateFormat time = new SimpleDateFormat("a h:mm"); //엑셀 서식에 따라 지정해줘야 함
                                 value = time.format(cell.getDateCellValue());
-//                                System.out.print("<"+value+">");
+                                System.out.print("<"+value+">");
                             }
                             else {
                                 value = Integer.toString((int)cell.getNumericCellValue()); //Numeric은 기본적으로 정수를 반환하지 않기 때문에 정수로 강제 형 변환 후 문자열로 파싱
-//                                System.out.print("<" + (int) cell.getNumericCellValue() + ">"); //getNumericCellValue 메서드는 기본으로 double형 반환
+                                System.out.print("<" + (int) cell.getNumericCellValue() + ">"); //getNumericCellValue 메서드는 기본으로 double형 반환
                             }
                         }
                         case STRING -> {
                             value = cell.getStringCellValue();
-//                            System.out.print("<" + cell.getStringCellValue() + ">");
+                            System.out.print("<" + cell.getStringCellValue() + ">");
                         }
                         case FORMULA -> { //셀에 수식이 있는 경우엔 FormulaEvaluator를 사용하면 결과값을 얻을 수 있다.
                             FormulaEvaluator formulaEval = workbook.getCreationHelper().createFormulaEvaluator();
                             value = formulaEval.evaluate(cell).formatAsString();
                             value = value.substring(0,value.length()-2);
+                            System.out.print("<" + value + ">");
                         }
                     }
                     switch (cellCnt){ //switch문을 사용하면 if~if else보다는 좀 더 코드가 보기 좋아짐
@@ -126,7 +134,7 @@ public class ReadSheet {
                     s.setWeek_num(s.getMonth()+"월 "+s.getWeek()+"주차");
                     cellCnt++;
                 }
-//                System.out.println();
+                System.out.println();
                 //studentList에 한 명씩 추가
                 studentList.add(s);
                 rowCnt++;
@@ -137,13 +145,23 @@ public class ReadSheet {
 
             //이름 리스트
             nameList = new ArrayList<String>();
+
             for (StudentData s : studentList) {
-                if ((s.getWeek().equals(userWeek)&&s.getMonth().equals(userMonth)) && !nameList.contains(s.getName())) {
+//                System.out.println("<" + s.getName() + ">");
+//                System.out.println("s.getWeek : " + s.getWeek() + "userWeek : " + userWeek);
+//                System.out.println("s.getMonth" + s.getMonth() + "userMonth : " + userMonth);
+//                System.out.println("!nameList.contains(s.getName()) : " + !nameList.contains(s.getName()));
+
+                if ((s.getWeek().equals(userWeek) && s.getMonth().equals(userMonth)) && !nameList.contains(s.getName())) {
                     nameList.add(s.getName());
                 }
             }
 
             file.close();
+
+            //System.out.println("<nameList> : " + nameList);
+            //System.out.println("<studentList> : " + studentList);
+
 
             this.nameList = nameList;
             this.studentList = studentList;

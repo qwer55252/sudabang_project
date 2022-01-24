@@ -87,27 +87,27 @@ public class ReadClinicSheet {
                             if (DateUtil.isCellDateFormatted(cell)&&cellCnt==1) { //문제 해결: 날짜 포멧인 경우엔 예외로 처리해줘야함
                                 Date date = cell.getDateCellValue();
                                 value = new SimpleDateFormat("yyyy.MM.dd").format(date); //저장할 날짜 포맷
-                                System.out.print("<" + value + ">");
+                                //System.out.print("<" + value + ">");
                             }
                             else if(cellCnt==2){ //출결
                                 SimpleDateFormat time = new SimpleDateFormat("a h:mm"); //엑셀 서식에 따라 지정해줘야 함
                                 value = time.format(cell.getDateCellValue());
-                                System.out.print("<"+value+">");
+                                //System.out.print("<"+value+">");
                             }
                             else {
                                 value = Integer.toString((int)cell.getNumericCellValue()); //Numeric은 기본적으로 정수를 반환하지 않기 때문에 정수로 강제 형 변환 후 문자열로 파싱
-                                System.out.print("<" + (int) cell.getNumericCellValue() + ">"); //getNumericCellValue 메서드는 기본으로 double형 반환
+                                //System.out.print("<" + (int) cell.getNumericCellValue() + ">"); //getNumericCellValue 메서드는 기본으로 double형 반환
                             }
                         }
                         case STRING -> {
                             value = cell.getStringCellValue();
-                            System.out.print("<" + cell.getStringCellValue() + ">");
+                            //System.out.print("<" + cell.getStringCellValue() + ">");
                         }
                         case FORMULA -> { //셀에 수식이 있는 경우엔 FormulaEvaluator를 사용하면 결과값을 얻을 수 있다.
                             FormulaEvaluator formulaEval = workbook.getCreationHelper().createFormulaEvaluator();
                             value = formulaEval.evaluate(cell).formatAsString();
                             value = value.substring(0,value.length()-2);
-                            System.out.print("<" + value + ">");
+                            //System.out.print("<" + value + ">");
                         }
                     }
                     switch (cellCnt){ //switch문을 사용하면 if~if else보다는 좀 더 코드가 보기 좋아짐
@@ -129,7 +129,7 @@ public class ReadClinicSheet {
 
                     cellCnt++;
                 }
-                System.out.println();
+                //System.out.println();
                 //studentList에 한 명씩 추가
                 studentList.add(s);
                 rowCnt++;

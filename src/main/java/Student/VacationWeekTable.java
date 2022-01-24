@@ -28,6 +28,8 @@ public class VacationWeekTable extends JFrame{
             if (studentData.getName().equals(sName) && (studentData.getMonth().equals(userMonth) && studentData.getWeek().equals(userWeek))){
                 printList.add(studentData);
             }
+//            System.out.println("studentData("+k+") : "+studentData);
+//            k++;
         }
         int printSize = printList.size();
         //부족한 수만큼 '-'데이터로 채운 학생 인스턴스 추가
@@ -734,7 +736,7 @@ public class VacationWeekTable extends JFrame{
 
 
         // Create test file
-        File test1 = new File(saveFilePath + sName + " " +userMonth+"월 "+userWeek+"주차 주간관리표"+".png");
+        File saveFile = new File(saveFilePath + sName + " " +userMonth+"월 "+userWeek+"주차 주간관리표"+".png");
 
 
         // Use the ImageIO API to write the bufferedImage to a temporary file
@@ -744,7 +746,7 @@ public class VacationWeekTable extends JFrame{
             c.printAll(g2d);
 
             g2d.dispose();
-            ImageIO.write(im, "png", test1);
+            ImageIO.write(im, "png", saveFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
